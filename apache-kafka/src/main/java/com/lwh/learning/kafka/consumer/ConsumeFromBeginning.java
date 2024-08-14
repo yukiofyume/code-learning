@@ -20,6 +20,13 @@ public class ConsumeFromBeginning {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ConsumeFromBeginning.class);
 
+    public static void main(String[] args) {
+        setUp();
+    }
+
+    /**
+     * 消费的简单事例
+     */
     private static void setUp() {
         Properties consumerProperties = new Properties();
         consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
