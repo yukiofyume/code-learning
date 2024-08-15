@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
 
-        <module>apache-kafka</module>
+        <module>kafka-series</module>
     </modules>
 
     <properties>
