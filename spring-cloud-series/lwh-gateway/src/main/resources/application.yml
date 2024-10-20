@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: lwh-member-doc                #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          uri: http://127.0.0.1:17800   #匹配后提供服务的路由地址
+          predicates:
+            - Path=/member/lwh-member/v3/api-docs/**
+        - id: lwh-member                #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          uri: http://127.0.0.1:17800   #匹配后提供服务的路由地址
+          predicates:
+            - Path=/member/**
+        - id: lwh-order-doc                #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          uri: http://127.0.0.1:17801   #匹配后提供服务的路由地址
+          predicates:
+            - Path=/order/lwh-order/v3/api-docs/**
+        - id: lwh-order                #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          uri: http://127.0.0.1:17801   #匹配后提供服务的路由地址
+          predicates:
+            - Path=/order/**
+
+knife4j:
+  # 聚合swagger文档
+  gateway:
+    enabled: true
+    # 排序规则(tag/operation排序自4.2.0版本新增)
+    # 取值：alpha-默认排序规则，官方swagger-ui默认实现,order-Knife4j提供的增强排序规则，开发者可扩展x-order，根据数值来自定义排序
+    tags-sorter: order
+    operations-sorter: order
+    # 指定手动配置的模式(默认为该模式)
+    strategy: manual
+    routes:
+      - name: 会员服务
+        # 真实子服务访问url地址-提供OpenAPI的文档
+        url: /member/lwh-member/v3/api-docs?group=default
+        service-name: lwh-member
+        # 路由前缀
+        # 兼容OpenAPI3规范在聚合时丢失contextPath属性的异常情况，由开发者自己配置contextPath,
+        # Knife4j的前端Ui做兼容处理,与url属性独立不冲突，仅OpenAPI3规范聚合需要，OpenAPI2规范不需要设置此属性,默认为(apiPathPrefix)
+        context-path: /member
+        order: 1
+      - name: 订单服务
+        url: /order/lwh-order/v3/api-docs?group=default
+        service-name: lwh-order
+        # 路由前缀
+        context-path: /order
+        order: 2
+
+

@@ -1,0 +1,17 @@
+server:
+  port: 17800
+  servlet:
+    context-path: /member
+spring:
+  application:
+    name: lwh-member
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /lwh-member/v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan:
+        - com.lwh.learning.member.controller

@@ -1,0 +1,17 @@
+server:
+  port: 17801
+  servlet:
+    context-path: /order
+spring:
+  application:
+    name: lwh-order
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /lwh-order/v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan:
+        - com.lwh.learning.order.controller
