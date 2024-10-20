@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lwh.learning</groupId>
-        <artifactId>code-learning</artifactId>
+        <artifactId>kafka-series</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
 

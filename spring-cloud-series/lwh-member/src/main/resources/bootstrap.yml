@@ -6,10 +6,10 @@ spring:
   application:
     name: lwh-member
 springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /lwh-member/v3/api-docs
+#  swagger-ui:
+#    path: /swagger-ui.html
+#  api-docs:
+#    path: /lwh-member/v3/api-docs
   group-configs:
     - group: 'default'
       paths-to-match: '/**'
