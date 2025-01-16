@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /es
+  port: 8888
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15432/ceshi
+    username: postgres
+    password: postgres
+
+
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: changeme
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+mybatis:
+  mapper-locations: /mapper/*.xml
