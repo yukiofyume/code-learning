@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lwh.learning</groupId>
-        <artifactId>code-learning</artifactId>
+        <artifactId>elasticsearch-series</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
 
-    <artifactId>elasticsearch-series</artifactId>
+    <artifactId>es-api</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
