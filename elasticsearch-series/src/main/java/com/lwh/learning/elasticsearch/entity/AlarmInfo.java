@@ -1,6 +1,9 @@
 package com.lwh.learning.elasticsearch.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.lwh.learning.elasticsearch.json.CustomLocalDateTimeDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +20,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AlarmInfo implements Serializable {
 
     @Serial
@@ -27,12 +31,14 @@ public class AlarmInfo implements Serializable {
             locale = "zh_CN",
             timezone = "GMT+8",
             shape = JsonFormat.Shape.STRING)
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     private LocalDateTime alarmTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",
             locale = "zh_CN",
             timezone = "GMT+8",
             shape = JsonFormat.Shape.STRING)
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     private LocalDateTime handleTime;
 
     /**
@@ -41,31 +47,33 @@ public class AlarmInfo implements Serializable {
     private Integer handleStatus;
 
     private String message;
-
-    /**
-     * 1-已同步到es, 2-未同步到es
-     */
-    private Integer esSyncStatus;
-
-    /**
-     * 同步到es的次数
-     */
-    private Integer retryEsCount;
-
-    /**
-     * 最后一次同步到 es 的时间
-     */
-    private LocalDateTime lastRetryEsTime;
+//
+//    /**
+//     * 1-已同步到es, 2-未同步到es
+//     */
+//    private Integer esSyncStatus;
+//
+//    /**
+//     * 同步到es的次数
+//     */
+//    private Integer retryEsCount;
+//
+//    /**
+//     * 最后一次同步到 es 的时间
+//     */
+//    private LocalDateTime lastRetryEsTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",
             locale = "zh_CN",
             timezone = "GMT+8",
             shape = JsonFormat.Shape.STRING)
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     private LocalDateTime createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",
             locale = "zh_CN",
             timezone = "GMT+8",
             shape = JsonFormat.Shape.STRING)
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
     private LocalDateTime updateTime;
 }
