@@ -24,8 +24,8 @@
         <spring.cloud.version>2023.0.3</spring.cloud.version>
         <spring.cloud.alibaba.version>2023.0.1.2</spring.cloud.alibaba.version>
         <knife4j.version>4.4.0</knife4j.version>
-
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -69,12 +69,23 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>3.0.3</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>3.0.4</version>
+                <groupId>co.elastic.clients</groupId>
+                <artifactId>elasticsearch-java</artifactId>
+                <version>7.17.27</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.elasticsearch.client</groupId>
+                        <artifactId>elasticsearch-rest-client</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>7.17.27</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
