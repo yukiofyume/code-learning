@@ -14,6 +14,8 @@
         <module>spring-cloud-series</module>
         <module>shardingsphere-series</module>
         <module>elasticsearch-series</module>
+        <module>elasticsearch-series/es-data-sync</module>
+        <module>common-tool</module>
     </modules>
 
     <properties>
@@ -59,15 +61,11 @@
                 <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-spring-boot3-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.5.9</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>3.0.3</version>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>3.5.10.1</version>
             </dependency>
             <dependency>
                 <groupId>co.elastic.clients</groupId>

@@ -25,10 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author lwh
@@ -123,7 +120,6 @@ class MainTest {
         elasticsearchClient.close();
         // 异步非阻塞客户端
         ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(getTransport());
-
         asyncClient
                 .exists(b -> b.index("products").id("foo"))
                 .whenComplete((response, exception) -> {
@@ -179,5 +175,30 @@ class MainTest {
                 .aggregations("avg-size", avgSize)
                 .aggregations("price-histogram", a -> a.histogram(h -> h.field("price")))
         );
+    }
+
+    @Test
+    void fifthTest2() throws IOException {
+        String s = "pwwkew";
+        System.out.println(lengthOfLongestSubstring(s));
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+        char[] chars = s.toCharArray();
+        int ret = 0;
+        for (int l = 0, r = 0; r < chars.length; r++) {
+            // 如果向右滑动窗口的时候发现了set中已经存在的元素
+            System.out.println(chars[r]);
+            System.out.println(l);
+            System.out.println(r);
+            while (set.contains(chars[r])) {
+                set.remove(chars[l]);
+                l++;
+            }
+            set.add(chars[r]);
+            ret = Math.max(ret, r - l + 1);
+        }
+        return ret;
     }
 }

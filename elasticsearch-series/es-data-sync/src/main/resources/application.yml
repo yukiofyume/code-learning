@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  datasource:
+    url: jdbc:postgresql://localhost:15432/ceshi
+    password: postgres
+    username: postgres
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+
+
