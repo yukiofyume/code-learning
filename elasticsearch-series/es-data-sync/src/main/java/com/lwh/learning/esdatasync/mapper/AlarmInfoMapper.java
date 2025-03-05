@@ -1,5 +1,6 @@
 package com.lwh.learning.esdatasync.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lwh.learning.esdatasync.entity.AlarmInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,8 +13,7 @@ import java.util.List;
  * @describe -
  */
 @Mapper
-//public interface AlarmInfoMapper extends BaseMapper<AlarmInfo> {
-public interface AlarmInfoMapper {
+public interface AlarmInfoMapper extends BaseMapper<AlarmInfo> {
 
     int insertSelective(AlarmInfo alarmInfo);
 

@@ -1,5 +1,7 @@
 package com.lwh.learning.esdatasync.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +24,7 @@ public class AlarmInfo implements Serializable {
     @Serial
     private static final long serialVersionUID = 2867690892361357884L;
 
-//    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",

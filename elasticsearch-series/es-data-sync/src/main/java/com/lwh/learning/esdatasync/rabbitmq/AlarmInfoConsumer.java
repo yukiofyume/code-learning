@@ -27,16 +27,12 @@ public class AlarmInfoConsumer {
     @RabbitListener(queues = "alarm.queue")
     public void handleAlarmMessage(AlarmInfo alarmInfo) {
         try {
-            // 1. 保存到 Elasticsearch
-            int year = alarmInfo.getAlarmTime().getYear();
-            // 2.这里模拟异常到死信息队列
-            if (year > 2024) {
-                throw new RuntimeException("当前year > 2024");
+            if (alarmInfo.getId() == 1) {
+                throw new Exception("模拟异常");
             }
-            ObjectMapper objectMapper = new ObjectMapper();
-            String esIndex = "alarm_info" + "_" + year;
+            String esIndex = "alarm_info_new";
             LOGGER.info("接受到消息，推送到指定的 es 索引中, {}", esIndex);
-//            ElasticSearchUtils.insertData(esIndex, objectMapper.writeValueAsString(alarmInfo));
+            ElasticSearchUtils.insertData(esIndex, alarmInfo.getId().toString(), alarmInfo);
         } catch (Exception e) {
             // 拒绝消息，不重回队列
             throw new AmqpRejectAndDontRequeueException("message processing error", e);
@@ -46,9 +42,7 @@ public class AlarmInfoConsumer {
     @RabbitListener(queues = "dead.letter.queue")
     public void processDeadMessage(AlarmInfo alarmInfo) {
         LOGGER.info("死信队列消费消息");
-        // 这里仅仅是为了es的批量消费
-        List<AlarmInfo> alarmInfoList = List.of(alarmInfo);
-        int year = alarmInfo.getAlarmTime().getYear();
-        String esIndex = "alarm_info" + "_" + year;
+        String esIndex = "alarm_info_new";
+        ElasticSearchUtils.insertData(esIndex, alarmInfo.getId().toString(), alarmInfo);
     }
 }

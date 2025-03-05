@@ -1,5 +1,6 @@
 package com.lwh.learning.esdatasync.elasticsearch;
 
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
@@ -40,6 +41,8 @@ public class ElasticSearchUtils {
 
     public final static ElasticsearchClient elasticsearchClient;
 
+    public final static ElasticsearchAsyncClient elasticsearchAsyncClient;
+
     static {
         // json 映射
         ObjectMapper objectMapper = new ObjectMapper();
@@ -79,6 +82,7 @@ public class ElasticSearchUtils {
             // 2.创建传输映射器
             ElasticsearchTransport elasticsearchTransport = new RestClientTransport(restClient, jsonpMapper);
             elasticsearchClient = new ElasticsearchClient(elasticsearchTransport);
+            elasticsearchAsyncClient = new ElasticsearchAsyncClient(elasticsearchTransport);
         } catch (IOReactorException e) {
             throw new RuntimeException(e);
         }
@@ -107,6 +111,7 @@ public class ElasticSearchUtils {
      * @param replicas 副本数，默认为1
      */
     public static CreateIndexResponse createIndex(String index, String alias, String shards, String replicas) {
+
         try {
             return elasticsearchClient.indices().create(c -> c
                     .index(index)
